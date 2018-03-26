@@ -39,7 +39,8 @@ app.set( 'port', ( process.env.PORT || 5000 ));
 app.get('/', function(req, res) {
 
     // ejs render automatically looks in the views folder
-res.send('hello world');
+//res.send('hello world');
+res.sendFile('src/login/index.html', {root: __dirname })
 });
 
 
