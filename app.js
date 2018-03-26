@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var randomstring = require("randomstring");
 const path = require('path');
 const serveStatic = require('serve-static');
+var http = require('http');
+var fs = require('fs');
 //<<<<<<< HEAD
 //var passport = require('passport');
 //var passport = require('./config/passport.js');
@@ -32,12 +34,19 @@ var db = mongoose.connection;
 User =require('./models/user');
 Files =require('./models/file');
 
-app.use("/", serveStatic ( path.join (__dirname, 'src/login/index.html') ) )
-
-
-
 const port = process.envPORT || 5000
-app.listen(port);
+
+fs.readFile('./src/login/index.html', function (err, html) {
+
+    if (err) throw err;    
+
+    http.createServer(function(request, response) {  
+        response.writeHeader(200, {"Content-Type": "text/html"});  
+        response.write(html);  
+        response.end();  
+    }).listen(PORT);
+});
+
 
 /* Google Code */
 /*
