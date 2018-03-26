@@ -34,19 +34,12 @@ var db = mongoose.connection;
 User =require('./models/user');
 Files =require('./models/file');
 
-const port = process.envPORT || 5000
+app.set( 'port', ( process.env.PORT || 5000 ));
 
-fs.readFile('./src/login/index.html', function (err, html) {
-
-    if (err) throw err;    
-
-    http.createServer(function(request, response) {  
-        response.writeHeader(200, {"Content-Type": "text/html"});  
-        response.write(html);  
-        response.end();  
-    }).listen(PORT);
-});
-
+// Start node server
+app.listen( app.get( 'port' ), function() {
+  console.log( 'Node server is running on port ' + app.get( 'port' ));
+  });
 
 /* Google Code */
 /*
