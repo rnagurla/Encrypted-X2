@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randomstring = require("randomstring");
+const path = require('path');
+const serveStatic = require('serve-static');
 //<<<<<<< HEAD
 //var passport = require('passport');
 //var passport = require('./config/passport.js');
@@ -30,13 +32,12 @@ var db = mongoose.connection;
 User =require('./models/user');
 Files =require('./models/file');
 
-app.get('/', function(req, res){
-  res.send('Hello ');
-});
+app.use("/", serveStatic ( path.join (__dirname, 'src/login/index.html') ) )
 
 
 
-app.listen(3000);
+const port = process.envPORT || 5000
+app.listen(port);
 
 /* Google Code */
 /*
