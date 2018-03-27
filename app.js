@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
 
     // ejs render automatically looks in the views folder
 //res.send('hello world');
-res.sendFile('src/login/index.html', {root: __dirname })
+  res.render('index.html', { root: __dirname + "/src/login/" } );
 });
 
 
